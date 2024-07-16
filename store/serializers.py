@@ -6,4 +6,5 @@ from store.models import Book
 class BooksSerializer(ModelSerializer):
     class Meta:
         model = Book
-        fields = '__all__'
+        fields = ('id', 'name', 'price')
+        # fields = '__all__'

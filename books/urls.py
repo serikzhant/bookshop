@@ -1,6 +1,8 @@
+from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path, re_path
 from rest_framework.routers import SimpleRouter
+from debug_toolbar.toolbar import debug_toolbar_urls
 
 from store.views import BookViewSet, UserBookRelationView, auth
 
@@ -17,3 +19,10 @@ urlpatterns = [
 ]
 
 urlpatterns += router.urls
+
+if settings.DEBUG:
+    import debug_toolbar
+
+    urlpatterns = [
+                      path('__debug__/', include(debug_toolbar.urls)),
+                  ] + urlpatterns
